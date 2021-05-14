@@ -13,7 +13,7 @@ from a general data csv, to include formatting.
 
 I have some extra packages, but I need to check them before removing those lines.
 
-This report requires but a data file and a table of holidays for the work days calculation.
+This report requires one data file and a table of holidays for the work days calculation.
 
 The "Excel Files - All Reports" contains all the outputs of the various reports made from the data.
 The " HTML Files - Admin Complaints" contains all the HTML pages that are then shunted into a pdf 
