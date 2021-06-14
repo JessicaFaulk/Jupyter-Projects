@@ -1,0 +1,42 @@
+import pandas as pd
+import glob
+
+#Written by Jessica Faulk  June 2021
+#Task: Append files from different directories with slightly different layouts and schemas using glob to create a master file of all training for department XYZ.
+
+# FY 2021
+FY2021_data = pd.DataFrame()
+for f in glob.glob(r'...\FY 2021\ABC System\*.xlsx'):
+    df = pd.read_excel(f, skiprows=3)
+    FY2021_data = FY2021_data.append(df,ignore_index=False)
+
+
+# FY2020 used two different naming schemas to keep data so two different sections were needed to make the FY2020 file    
+FY2020_data = pd.DataFrame()
+res = [f for f in glob.glob(r'...\FY 2020\ABC System\[0-0][0-9]-XYZ0100_[A-Z][A-Z][A-Z]-[0-9][0-9][0-9][0-9].xlsx')]
+for f in res:
+    df = pd.read_excel(f, skiprows=3)
+    FY2020_data = FY2020_data.append(df,ignore_index=False)
+
+res = [f for f in glob.glob(r'...\FY 2020\ABC System\[0-0][0-9]a-XYZ0100_[A-Z][A-Z][A-Z]-[0-9][0-9][0-9][0-9].xlsx')]
+for f in res:
+    df = pd.read_excel(f, skiprows=3)
+    FY2020_data = FY2020_data.append(df,ignore_index=False)
+    
+# FY2019
+FY2019_data = pd.DataFrame()
+for f in glob.glob(r'...\FY 2019\ABC System\*.xlsx'):
+    df = pd.read_excel(f, skiprows=3)
+    FY2019_data = FY2019_data.append(df,ignore_index=False)
+    
+# FY2018 - 2018 was missing the innner systems folders and some of the files were .xls and some where .xlsx
+FY2018_data = pd.DataFrame()
+for f in glob.glob(r' \FY 2018\*'):
+    print(f)
+    df = pd.read_excel(f, skiprows=3, usecols="A:L")
+    FY2018_data = FY2018_data.append(df,ignore_index=False)
+
+df = FY2021_data.append(FY2020_data,ignore_index=False)
+df = df.append(FY2019_data,ignore_index=False)
+df = df.append(FY2018_data,ignore_index=False)
+print(df)
