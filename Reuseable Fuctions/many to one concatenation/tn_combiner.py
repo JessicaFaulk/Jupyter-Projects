@@ -41,5 +41,6 @@ def concat_cases(filename):
     #create new frame
     df_1TNo = pd.concat([g_case,g_descrim,g_disabil,g_disabil_ot,g_issue,g_issue_ot,g_status,g_find,g_result,g_result_ot,g_agency, g_intake_date, g_closed_date], axis=1).reset_index()
     df_1TNo
-    df_1TNo.to_excel('Combined Cases.xlsx')
-    print('done')
+    new_name = 'Combined Cases.xlsx'
+    df_1TNo.to_excel(new_name)
+    print('done' + new_name)
